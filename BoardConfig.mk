@@ -89,6 +89,7 @@ TWRP_INCLUDE_LOGCAT := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
 TW_INCLUDE_CRYPTO := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd
