@@ -1,0 +1,40 @@
+version: 2.1
+executors:
+  worker:
+    docker:
+      - image: fr3akyphantom/droid-builder:latest
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+jobs:
+  build:
+    executor: worker
+    environment:
+      MANIFEST_BRANCH: 'android-9.0'
+      VENDOR: 'motorola'
+      CODENAME: 'sanders'
+      FLAVOR: 'eng'
+      PB_OFFICIAL: 'true'
+      MAINTAINER: '@Sathamspot'
+      EXTRA_CMD: 'cd bootable/recovery && patch -p1 < ../../device/motorola/sanders/patches/bootable-recovery-20mb.patches && cd ../..'
+      CHANGELOG: |
+        - We are official now ❤️
+        - Initial official build
+        - Fixed red line font error
+        - Based on Android 9 tree
+    working_directory: /home/builder/pitchblack
+    steps:
+      - run:
+          name: AIO Build
+          command: |
+            wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
+            source build.sh
+workflows:
+  version: 2.1
+  build_and_test:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: 'android-9.0'
+          context: org-global
