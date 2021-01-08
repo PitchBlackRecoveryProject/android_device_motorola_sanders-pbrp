@@ -1,0 +1,35 @@
+diff --git a/gui/Android.mk b/gui/Android.mk
+index 220174e..db1b55f 100755
+--- a/gui/Android.mk
++++ b/gui/Android.mk
+@@ -225,14 +225,14 @@ TWRP_RES += $(TW_ADDITIONAL_RES)
+ ifeq ($(BOARD_RECOVERYIMAGE_PARTITION_SIZE),)
+     $(error BOARD_RECOVERYIMAGE_PARTITION_SIZE is not defined)
+ endif
+-ifeq ($(shell test $(BOARD_RECOVERYIMAGE_PARTITION_SIZE) -le 1677726; echo $$?),0)
++ifeq ($(shell test $(BOARD_RECOVERYIMAGE_PARTITION_SIZE) -le 21073920; echo $$?),0)
+     $(warning Recovery Size is small discarding Special fonts)
+ endif
+ TWRP_RES_GEN := $(intermediates)/twrp
+ $(TWRP_RES_GEN):
+ 	mkdir -p $(TARGET_RECOVERY_ROOT_OUT)$(TWRES_PATH)
+ 	cp -fr $(TWRP_RES) $(TARGET_RECOVERY_ROOT_OUT)$(TWRES_PATH)
+-	if test $(BOARD_RECOVERYIMAGE_PARTITION_SIZE) -le 16777216; then \
++	if test $(BOARD_RECOVERYIMAGE_PARTITION_SIZE) -le 21073920; then \
+ 	    rm -rf $(TARGET_RECOVERY_ROOT_OUT)$(TWRES_PATH)/fonts/DroidSansFallback.ttf; \
+ 	    rm -rf $(TARGET_RECOVERY_ROOT_OUT)$(TWRES_PATH)/fonts/NotoSansCJKjp-Regular.ttf; \
+ 	    rm -rf $(TARGET_RECOVERY_ROOT_OUT)$(TWRES_PATH)/fonts/RoboNoto-Medium.ttf; \
+diff --git a/gui/theme/portrait_hdpi/ui.xml b/gui/theme/portrait_hdpi/ui.xml
+index 967efee..6250a92 100644
+--- a/gui/theme/portrait_hdpi/ui.xml
++++ b/gui/theme/portrait_hdpi/ui.xml
+@@ -28,9 +28,6 @@
+ 		<font name="font_roboto" filename="Roboto_Medium.ttf" size="45"/>
+ 		<font name="font_n" filename="pb.ttf" size="20"/>
+ 		<font name="font_o" filename="pb.ttf" size="30"/>
+-		<font name="chin" filename="DroidSansFallback.ttf" size="30"/>
+-		<font name="ja" filename="NotoSansCJKjp-Regular.ttf" size="30"/>
+-		<font name="ko" filename="RoboNoto-Medium.ttf" size="30"/>
+ 		<font name="eng" filename="pb.ttf" size="30"/>
+ 		<font name="font_s" filename="pb.ttf" size="32"/>
+ 		<font name="font_xl" filename="pb.ttf" size="75"/>
